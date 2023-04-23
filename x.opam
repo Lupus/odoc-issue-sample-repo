@@ -1,0 +1,18 @@
+opam-version: "2.0"
+name: "x"
+synopsis: "Sample project"
+maintainer: "Sample maintainer"
+authors: ["Someone"]
+license: "MIT"
+homepage: "https://ocaml.org"
+bug-reports: "https://ocaml.org"
+depends: [
+  "odoc" {with-doc}
+  "dune" {build >= "3.2.0"}
+]
+build: [
+  ["dune" "subst"] {pinned}
+  ["dune" "build" "-p" name "-j" jobs]
+  ["dune" "runtest" "-p" name "-j" jobs] {with-test}
+  ["dune" "build" "-p" name "@doc"] {with-doc}
+]
